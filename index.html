@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>For Valeria</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #ffccdd, #ffe6f0);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .start-screen {
+      position: fixed;
+      z-index: 100;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom right, #ffccdd, #ffe6f0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .start-screen button {
+      padding: 20px 40px;
+      font-size: 1.5em;
+      background: #ff3399;
+      border: none;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .center-text {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5em;
+      color: #b30059;
+      text-align: center;
+      z-index: 10;
+      animation: fadeInOut 4s ease-in-out forwards;
+      font-weight: bold;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 5;
+      display: none;
+      pointer-events: none;
+    }
+
+    .message-text {
+      display: none;
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      text-align: center;
+      font-size: 2em;
+      color: #b30059;
+      z-index: 10;
+      font-weight: bold;
+      animation: fadeInOut 3s ease-in-out forwards;
+    }
+
+    .final-letter {
+      display: none;
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      right: 10%;
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #333;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 25px;
+      border-radius: 12px;
+      z-index: 20;
+      font-family: 'Segoe UI', sans-serif;
+      animation: typing 8s steps(80, end) forwards;
+      overflow: hidden;
+      white-space: pre-wrap;
+    }
+
+    @keyframes typing {
+      from { width: 0; opacity: 0; }
+      10% { opacity: 1; }
+      to { width: 100%; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Кнопка открытия -->
+  <div id="startScreen" class="start-screen">
+    <button onclick="startSite()">Открыть сообщение</button>
+  </div>
+
+  <!-- Заставка -->
+  <div id="introText" class="center-text" style="display:none;">For Valeria<br>From Ruslan</div>
+
+  <!-- Первое видео -->
+  <video id="video1" playsinline>
+    <source src="https://raw.githubusercontent.com/forvaleriya/MUSIC/main/IMG_1246%20(1).MOV" type="video/mp4">
+  </video>
+
+  <!-- Сообщения между видео -->
+  <div id="message1" class="message-text">Спасибо тебе</div>
+  <div id="message2" class="message-text">С днём рождения</div>
+
+  <!-- Второе видео -->
+  <video id="video2" playsinline>
+    <source src="https://raw.githubusercontent.com/forvaleriya/valeriya/main/IMG_1247%20(1).MOV" type="video/mp4">
+  </video>
+
+  <!-- Финальное письмо -->
+  <div id="finalLetter" class="final-letter">
+Лера, поздравляю тебя с днём рождения! 🎉
+
+Вот уже тебе 16 лет — ты становишься совсем взрослой.
+Хотел бы пожелать тебе всего самого наилучшего: настоящего счастья, внутреннего тепла, уверенности в себе, и чтобы всё, о чём ты мечтаешь, обязательно сбылось.
+
+Пусть в твоей жизни будет много моментов, от которых захватывает дух. Желаю тебе любви, лёгкости, настоящих друзей и вдохновения каждый день.
+
+И знай: я тебя очень люблю ❤️  
+Что бы ни происходило — даже если тебе грустно или тяжело — я всегда рядом.
+
+Спасибо тебе за то, что ты есть.  
+Ты удивительная.
+
+С любовью,  
+Руслан 💌
+  </div>
+
+  <script>
+    function startSite() {
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('introText').style.display = 'block';
+
+      setTimeout(() => {
+        document.getElementById('introText').style.display = 'none';
+        let v1 = document.getElementById("video1");
+        v1.style.display = 'block';
+        v1.muted = false;
+        v1.controls = false;
+        v1.autoplay = true;
+        v1.play();
+      }, 4000);
+    }
+
+    const video1 = document.getElementById("video1");
+    const video2 = document.getElementById("video2");
+    const msg1 = document.getElementById("message1");
+    const msg2 = document.getElementById("message2");
+    const finalLetter = document.getElementById("finalLetter");
+
+    video1.onended = () => {
+      video1.style.display = 'none';
+      msg1.style.display = 'block';
+
+      setTimeout(() => {
+        msg1.style.display = 'none';
+        msg2.style.display = 'block';
+      }, 3000);
+
+      setTimeout(() => {
+        msg2.style.display = 'none';
+        video2.style.display = 'block';
+        video2.muted = false;
+        video2.controls = false;
+        video2.autoplay = true;
+        video2.play();
+      }, 6000);
+    };
+
+    video2.onended = () => {
+      video2.style.display = 'none';
+      finalLetter.style.display = 'block';
+    };
+  </script>
+</body>
+</html>
